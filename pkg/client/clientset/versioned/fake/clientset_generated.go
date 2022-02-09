@@ -23,9 +23,9 @@ import (
 	"k8s.io/client-go/discovery"
 	fakediscovery "k8s.io/client-go/discovery/fake"
 	"k8s.io/client-go/testing"
-	clientset "my.dev/solar-system/pkg/client/clientset/versioned"
-	examplev1alpha1 "my.dev/solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1"
-	fakeexamplev1alpha1 "my.dev/solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1/fake"
+	clientset "solar-system/pkg/client/clientset/versioned"
+	examplev1alpha1 "solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1"
+	fakeexamplev1alpha1 "solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1/fake"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.

@@ -20,7 +20,7 @@ package fake
 import (
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
-	v1alpha1 "my.dev/solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1"
+	v1alpha1 "solar-system/pkg/client/clientset/versioned/typed/solar/v1alpha1"
 )
 
 type FakeExampleV1alpha1 struct {

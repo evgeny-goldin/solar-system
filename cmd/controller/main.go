@@ -2,7 +2,7 @@ package main
 
 import (
 	"knative.dev/pkg/injection/sharedmain"
-	"my.dev/solar-system/pkg/reconciler/solar"
+	"solar-system/pkg/reconciler/solar"
 )
 
 func main() {

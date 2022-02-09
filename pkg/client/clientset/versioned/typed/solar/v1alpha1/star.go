@@ -18,14 +18,15 @@
 package v1alpha1
 
 import (
+	"context"
 	"time"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
 	rest "k8s.io/client-go/rest"
-	v1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
-	scheme "my.dev/solar-system/pkg/client/clientset/versioned/scheme"
+	v1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
+	scheme "solar-system/pkg/client/clientset/versioned/scheme"
 )
 
 // StarsGetter has a method to return a StarInterface.
@@ -70,7 +71,7 @@ func (c *stars) Get(name string, options v1.GetOptions) (result *v1alpha1.Star, 
 		Resource("stars").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -87,7 +88,7 @@ func (c *stars) List(opts v1.ListOptions) (result *v1alpha1.StarList, err error)
 		Resource("stars").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -104,7 +105,7 @@ func (c *stars) Watch(opts v1.ListOptions) (watch.Interface, error) {
 		Resource("stars").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Watch()
+		Watch(context.Background())
 }
 
 // Create takes the representation of a star and creates it.  Returns the server's representation of the star, and an error, if there is any.
@@ -114,7 +115,7 @@ func (c *stars) Create(star *v1alpha1.Star) (result *v1alpha1.Star, err error) {
 		Namespace(c.ns).
 		Resource("stars").
 		Body(star).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -127,7 +128,7 @@ func (c *stars) Update(star *v1alpha1.Star) (result *v1alpha1.Star, err error) {
 		Resource("stars").
 		Name(star.Name).
 		Body(star).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -143,7 +144,7 @@ func (c *stars) UpdateStatus(star *v1alpha1.Star) (result *v1alpha1.Star, err er
 		Name(star.Name).
 		SubResource("status").
 		Body(star).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }
@@ -155,7 +156,7 @@ func (c *stars) Delete(name string, options *v1.DeleteOptions) error {
 		Resource("stars").
 		Name(name).
 		Body(options).
-		Do().
+		Do(context.Background()).
 		Error()
 }
 
@@ -171,7 +172,7 @@ func (c *stars) DeleteCollection(options *v1.DeleteOptions, listOptions v1.ListO
 		VersionedParams(&listOptions, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(options).
-		Do().
+		Do(context.Background()).
 		Error()
 }
 
@@ -184,7 +185,7 @@ func (c *stars) Patch(name string, pt types.PatchType, data []byte, subresources
 		SubResource(subresources...).
 		Name(name).
 		Body(data).
-		Do().
+		Do(context.Background()).
 		Into(result)
 	return
 }

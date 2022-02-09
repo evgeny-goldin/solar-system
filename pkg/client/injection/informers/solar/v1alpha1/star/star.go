@@ -23,8 +23,8 @@ import (
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
-	v1alpha1 "my.dev/solar-system/pkg/client/informers/externalversions/solar/v1alpha1"
-	factory "my.dev/solar-system/pkg/client/injection/informers/factory"
+	v1alpha1 "solar-system/pkg/client/informers/externalversions/solar/v1alpha1"
+	factory "solar-system/pkg/client/injection/informers/factory"
 )
 
 func init() {

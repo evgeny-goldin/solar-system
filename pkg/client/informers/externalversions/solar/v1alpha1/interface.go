@@ -18,7 +18,7 @@
 package v1alpha1
 
 import (
-	internalinterfaces "my.dev/solar-system/pkg/client/informers/externalversions/internalinterfaces"
+	internalinterfaces "solar-system/pkg/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

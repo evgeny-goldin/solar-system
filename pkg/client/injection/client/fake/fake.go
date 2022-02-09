@@ -24,8 +24,8 @@ import (
 	"k8s.io/client-go/rest"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
-	fake "my.dev/solar-system/pkg/client/clientset/versioned/fake"
-	client "my.dev/solar-system/pkg/client/injection/client"
+	fake "solar-system/pkg/client/clientset/versioned/fake"
+	client "solar-system/pkg/client/injection/client"
 )
 
 func init() {

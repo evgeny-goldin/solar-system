@@ -22,9 +22,9 @@ import (
 
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
-	externalversions "my.dev/solar-system/pkg/client/informers/externalversions"
-	fake "my.dev/solar-system/pkg/client/injection/client/fake"
-	factory "my.dev/solar-system/pkg/client/injection/informers/factory"
+	externalversions "solar-system/pkg/client/informers/externalversions"
+	fake "solar-system/pkg/client/injection/client/fake"
+	factory "solar-system/pkg/client/injection/informers/factory"
 )
 
 var Get = factory.Get

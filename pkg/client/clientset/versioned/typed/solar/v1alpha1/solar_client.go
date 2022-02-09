@@ -19,8 +19,8 @@ package v1alpha1
 
 import (
 	rest "k8s.io/client-go/rest"
-	v1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
-	"my.dev/solar-system/pkg/client/clientset/versioned/scheme"
+	v1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
+	"solar-system/pkg/client/clientset/versioned/scheme"
 )
 
 type ExampleV1alpha1Interface interface {

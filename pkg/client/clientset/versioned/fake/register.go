@@ -23,7 +23,7 @@ import (
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
-	examplev1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
+	examplev1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
 )
 
 var scheme = runtime.NewScheme()

@@ -18,8 +18,8 @@
 package solar
 
 import (
-	internalinterfaces "my.dev/solar-system/pkg/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "my.dev/solar-system/pkg/client/informers/externalversions/solar/v1alpha1"
+	internalinterfaces "solar-system/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "solar-system/pkg/client/informers/externalversions/solar/v1alpha1"
 )
 
 // Interface provides access to each of this group's versions.

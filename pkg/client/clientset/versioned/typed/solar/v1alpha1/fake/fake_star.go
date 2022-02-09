@@ -24,7 +24,7 @@ import (
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
 	testing "k8s.io/client-go/testing"
-	v1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
+	v1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
 )
 
 // FakeStars implements StarInterface

@@ -24,10 +24,10 @@ import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
-	solarv1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
-	versioned "my.dev/solar-system/pkg/client/clientset/versioned"
-	internalinterfaces "my.dev/solar-system/pkg/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "my.dev/solar-system/pkg/client/listers/solar/v1alpha1"
+	solarv1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
+	versioned "solar-system/pkg/client/clientset/versioned"
+	internalinterfaces "solar-system/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "solar-system/pkg/client/listers/solar/v1alpha1"
 )
 
 // StarInformer provides access to a shared informer and lister for

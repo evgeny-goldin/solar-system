@@ -7,38 +7,38 @@ import (
 	"reflect"
 	"strconv"
 
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"
-	"k8s.io/client-go/tools/cache"
+	apierrs "k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/client-go/kubernetes"
-	"knative.dev/pkg/logging/logkey"
-	appsv1 "k8s.io/api/apps/v1"
-	corev1 "k8s.io/api/core/v1"
-	apierrs "k8s.io/apimachinery/pkg/api/errors"
 	appsv1listers "k8s.io/client-go/listers/apps/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/tools/cache"
+	"knative.dev/pkg/logging/logkey"
 
 	"knative.dev/pkg/controller"
 	"knative.dev/pkg/logging"
 	"knative.dev/pkg/reconciler"
-	samplesv1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
-	listers "my.dev/solar-system/pkg/client/listers/solar/v1alpha1"
-	clientset "my.dev/solar-system/pkg/client/clientset/versioned"
+	samplesv1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
+	clientset "solar-system/pkg/client/clientset/versioned"
+	listers "solar-system/pkg/client/listers/solar/v1alpha1"
 )
 
-const(
-	ImagePath = "docker.io/houshengbo/energy-source:latest"
+const (
+	ImagePath     = "docker.io/houshengbo/energy-source:latest"
 	TargetPortNum = 8080
-	PortNum = 80
+	PortNum       = 80
 )
 
 // Reconciler implements controller.Reconciler for Star resources.
 type Reconciler struct {
-	KubeClientSet kubernetes.Interface
-	starClient clientset.Interface
-	deploymentLister    appsv1listers.DeploymentLister
-	starLister listers.StarLister
+	KubeClientSet    kubernetes.Interface
+	starClient       clientset.Interface
+	deploymentLister appsv1listers.DeploymentLister
+	starLister       listers.StarLister
 }
 
 // Check that our Reconciler implements Interface
@@ -152,7 +152,7 @@ func (r *Reconciler) reconcileDeployment(ctx context.Context, star *samplesv1alp
 }
 
 func (r *Reconciler) createDeployment(ctx context.Context, deployment *appsv1.Deployment) (*appsv1.Deployment, error) {
-	return r.KubeClientSet.AppsV1().Deployments(deployment.Namespace).Create(deployment)
+	return r.KubeClientSet.AppsV1().Deployments(deployment.Namespace).Create(ctx, deployment, metav1.CreateOptions{})
 }
 
 func (r *Reconciler) newDeployment(star *samplesv1alpha1.Star, name string) *appsv1.Deployment {
@@ -214,7 +214,7 @@ func (r *Reconciler) checkDeployment(ctx context.Context, star *samplesv1alpha1.
 		}
 		return false
 	}
-	deployment, err := r.KubeClientSet.AppsV1().Deployments(deployment.GetNamespace()).Get(deployment.GetName(), metav1.GetOptions{})
+	deployment, err := r.KubeClientSet.AppsV1().Deployments(deployment.GetNamespace()).Get(ctx, deployment.GetName(), metav1.GetOptions{})
 	if err != nil {
 		star.Status.MarkDeploymentUnavailable(deployment.Name)
 		return deployment, err
@@ -262,10 +262,10 @@ func (r *Reconciler) newService(star *samplesv1alpha1.Star, name string) *corev1
 
 func (r *Reconciler) createService(ctx context.Context, star *samplesv1alpha1.Star,
 	service *corev1.Service) (*corev1.Service, error) {
-	ser, err := r.KubeClientSet.CoreV1().Services(service.GetNamespace()).Get(service.GetName(), metav1.GetOptions{})
+	ser, err := r.KubeClientSet.CoreV1().Services(service.GetNamespace()).Get(ctx, service.GetName(), metav1.GetOptions{})
 	if err != nil {
 		if apierrs.IsNotFound(err) {
-			return r.KubeClientSet.CoreV1().Services(service.GetNamespace()).Create(service)
+			return r.KubeClientSet.CoreV1().Services(service.GetNamespace()).Create(ctx, service, metav1.CreateOptions{})
 		}
 		star.Status.MarkDeploymentUnavailable(ser.Name)
 		return ser, err

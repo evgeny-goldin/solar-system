@@ -22,8 +22,8 @@ import (
 
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
-	fake "my.dev/solar-system/pkg/client/injection/informers/factory/fake"
-	star "my.dev/solar-system/pkg/client/injection/informers/solar/v1alpha1/star"
+	fake "solar-system/pkg/client/injection/informers/factory/fake"
+	star "solar-system/pkg/client/injection/informers/solar/v1alpha1/star"
 )
 
 var Get = star.Get

@@ -21,7 +21,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
-	v1alpha1 "my.dev/solar-system/pkg/apis/solar/v1alpha1"
+	v1alpha1 "solar-system/pkg/apis/solar/v1alpha1"
 )
 
 // StarLister helps list Stars.

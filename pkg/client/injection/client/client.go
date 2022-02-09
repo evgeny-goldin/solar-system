@@ -23,7 +23,7 @@ import (
 	rest "k8s.io/client-go/rest"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
-	versioned "my.dev/solar-system/pkg/client/clientset/versioned"
+	versioned "solar-system/pkg/client/clientset/versioned"
 )
 
 func init() {
