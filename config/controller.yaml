@@ -35,9 +35,7 @@ spec:
       serviceAccountName: controller
       containers:
       - name: controller
-        # This is the Go import path for the binary that is containerized
-        # and substituted here.
-        image: my.dev/solar-system/cmd/controller
+        image: ko://solar-system/cmd/controller
         volumeMounts:
         - name: config-logging
           mountPath: /etc/config-logging
